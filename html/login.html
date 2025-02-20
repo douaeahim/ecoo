@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Douae Ahim - Portfolio</title>
+    <style>
+        /* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.book-container {
+    width: 80%;
+    margin: auto;
+    padding: 30px;
+    border: 2px solid #ccc;
+    background-color: #fff;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.page {
+    display: none;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.page.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Project Card */
+.project-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.project-card {
+    width: 45%;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.project-card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Button Styles */
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Page Transitions */
+.page {
+    display: none;
+}
+.page.active {
+    display: block;
+}
+
+/* Smooth transition when changing pages */
+.page {
+    transition: all 1s ease-in-out;
+}
+
+    </style>
+    
+</head>
+<body>
+    <div class="book-container">
+        <!-- First Page -->
+        <div class="page" id="page1">
+            <h2>Welcome to My Portfolio</h2>
+            <p>This is the introduction of who I am and what I do.</p>
+            <button onclick="goToNextPage(2)">Next</button>
+        </div>
+
+        <!-- Second Page -->
+        <div class="page" id="page2">
+            <h2>My Services</h2>
+            <ul>
+                <li>📅 Appointment Scheduling</li>
+                <li>💻 Web Development</li>
+            </ul>
+            <button onclick="goToPreviousPage(1)">Previous</button>
+            <button onclick="goToNextPage(3)">Next</button>
+        </div>
+
+        <!-- Third Page -->
+        <div class="page" id="page3">
+            <h2>My Projects</h2>
+            <div class="project-container">
+                <div class="project-card">
+                    <img src="project1.jpg" alt="Project 1">
+                    <p>Project 1</p>
+                </div>
+                <div class="project-card">
+                    <img src="project2.jpg" alt="Project 2">
+                    <p>Project 2</p>
+                </div>
+            </div>
+            <button onclick="goToPreviousPage(2)">Previous</button>
+            <button onclick="goToNextPage(4)">Next</button>
+        </div>
+
+        <!-- Fourth Page -->
+        <div class="page" id="page4">
+            <h2>Contact Me</h2>
+            <p>Email: douae.ahim@email.com</p>
+            <p>LinkedIn: <a href="#">linkedin.com/in/douaeahim</a></p>
+            <button onclick="goToPreviousPage(3)">Previous</button>
+        </div>
+    </div>
+    <script>
+        // Function to show the next page with smooth transition
+function goToNextPage(pageNumber) {
+    var currentPage = document.querySelector('.page.active');
+    if (currentPage) {
+        currentPage.classList.remove('active');
+    }
+    var nextPage = document.getElementById('page' + pageNumber);
+    nextPage.classList.add('active');
+}
+
+// Function to show the previous page with smooth transition
+function goToPreviousPage(pageNumber) {
+    var currentPage = document.querySelector('.page.active');
+    if (currentPage) {
+        currentPage.classList.remove('active');
+    }
+    var previousPage = document.getElementById('page' + pageNumber);
+    previousPage.classList.add('active');
+}
+
+// Automatically show the first page
+window.onload = function() {
+    document.getElementById('page1').classList.add('active');
+}
+
+    </script>
+</body>
+</html>

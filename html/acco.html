@@ -1,0 +1,600 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Top 30 Makeup Products</title>
+    <style>
+         body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #232323;
+            padding: 20px;
+            color: white;
+            font-size: 1.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        header .logo a {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #f2a900;
+            cursor: pointer;
+            text-decoration: none;
+            flex: 1;
+            text-align: left;
+        }
+
+        header .search-bar {
+            display: flex;
+            align-items: center;
+            width: 50%;
+            background-color: #fff;
+            padding: 5px 15px;
+            border-radius: 25px;
+        }
+
+        header .search-bar input {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        header .search-bar button {
+            background-color: #f2a900;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        nav {
+            background-color: #232323;
+            padding: 10px 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 10px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #f2a900;
+        }
+
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .product {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            padding: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .product img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .product:hover img {
+            transform: scale(1.1);
+        }
+
+        .product h2 {
+            font-size: 1.4em;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .product p {
+            font-size: 1em;
+            color: #777;
+            margin: 5px 0;
+        }
+
+        .product .price {
+            font-size: 1.2em;
+            color: #e74c3c;
+            margin: 10px 0;
+        }
+
+        .product button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #f2a900;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .product a:hover {
+            background-color: #d68f00;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1em 0;
+            background-color: #232323;
+            color: white;
+        }
+        .product button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #f2a900;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        /* Cart Icon */
+        .cart-icon {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            background-color: #f2a900;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cart-modal .cart-content {
+            background: white;
+            padding: 20px;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 12px;
+        }
+
+        .cart-modal .cart-content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .cart-modal .cart-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .cart-modal .cart-content ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-modal .cart-content ul li:last-child {
+    border-bottom: none;
+}
+
+.cart-modal .cart-content .total-price {
+    text-align: right;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+        .close-cart {
+            cursor: pointer;
+            color: #e74c3c;
+            font-size: 1.5rem;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+/* Buy Now Button */
+.buy-now-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.buy-now-btn:hover {
+    background-color: #45a049;
+}
+
+/* Remove Button */
+.remove-item {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.remove-item:hover {
+    background-color: #c0392b;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fa fa-star" ></i> <a href="../index.html">AHIM</a>
+        </div>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search for products, brands and more...">
+            <button onclick="filterProducts()"><i class="fa fa-search"></i></button>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="electro.html">Accessories</a></li>
+            <li><a href="make.html">Makeup</a></li>
+            <li><a href="acco.html">Electronics</a></li>
+            <li><a href="../index.html">Home Appliances</a></li>
+        </ul>
+    </nav>
+
+    <!-- Shopping Cart Icon -->
+    <div class="cart-icon">
+        <i class="fa fa-shopping-cart"></i>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal">
+       <!-- Inside the cart-content div -->
+<div class="cart-content">
+    <span class="close-cart">&times;</span>
+    <h2>Your Cart</h2>
+    <ul id="cart-items">
+        <!-- Cart items will appear here -->
+    </ul>
+    <div class="total-price">
+        Total: $<span id="total-price">0.00</span>
+    </div>
+    <button id="buy-now" class="buy-now-btn">Buy Now</button>
+</div>
+    </div>
+
+    <section class="product-list">
+        <!-- Product 1 -->
+        <div class="product" data-name="Product 1" data-price="29.99">
+            <img src="../imgs/_Unlock Ultimate Sound_ Top 3 Apple Earbuds You Need Now!_.jpeg" alt="Product 1">
+            <h2>airpods</h2>
+           
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-name="Product 1" data-price="29.99">
+            <img src="../imgs/Alexa Eco Echo Dot Amazon Smart Speaker Alexa 3 Geração Original.jpeg" alt="Product 2">
+            <h2>alexa</h2>
+          
+
+             <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <!-- Product 3 -->
+        <div class="product" data-name="Product 1" data-price="29.99">
+            <img src="../imgs/Φορητό Ηχείο Αδιάβροχο Bluetooth GO3 20_04015 Pink JBL.jpeg" alt="Product 3">
+            <h2>pink ubl</h2>
+         
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <!-- Product 4 -->
+        <div class="product" data-name="Product 1" data-price="29.99">
+            <img src="../imgs/CLIP 4_ JBL's Bluetooth Speaker Makes Portability Sound Good!.jpeg" alt="Product 4">
+            <h2>black ubl</h2>
+          
+             <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <!-- Product 5 -->
+        <div class="product" data-price="29.99">
+            <img src="../imgs/Teenage Girl and Tween Girl Gift Guide 2024.jpeg" alt="Product 5">
+            <h2>white alexa</h2>
+          
+             <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product " data-price="29.99">
+            <img src="../imgs/Sony Wireless Noise Canceling Headphones - Black _ RC Willey.jpeg " alt="Product 5">
+            <h2>headphones</h2>
+          
+             <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-price="29.99">
+            <img src="../imgs/Samsung Galaxy S24 Ultra Cell Phone, 256GB AI Smartphone, Unlocked Android, 200MP, 100x Zoom Cameras, Fast Processor, Long Battery Life, Edge-to-Edge Display, S Pen, US Version, 2024, Titanium Black.jpeg" alt="Product 5">
+            <h2>Samsung Galaxy S24 </h2>
+          
+             <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-price="29.99">
+            <img src="../imgs/SAMSUNG Galaxy A15 Smartphone 128Go Bleu nuit.jpeg" alt="Product 5">
+            <h2>SAMSUNG Galaxy A15</h2>
+          
+             <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-price="29.99">
+            <img src="../imgs/Digital Alarm Clock Student For Led Desktop Mirror Bedside Clock Usb.jpeg" alt="Product 5">
+            <h2>Digital Alarm Clock</h2>
+          
+             <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-price="29.99">
+            <img src="../imgs/Electronics _ Audio, Photography, Phone & Tech Accessories.jpeg" alt="Product 5">
+            <h2>/Electronics  Audio Photography</h2>
+          
+             <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-price="29.99">
+            <img src="../imgs/Razer DeathAdder Elite Gaming Mouse_ 16,000 DPI Optical Sensor - Chroma RGB Lighting - 7 Programmable Buttons - Mechanical Switches - Rubber Side Grips - Matte Black.jpeg" alt="Product 5">
+            <h2>Razer DeathAdder Elite </h2>
+          
+             <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-price="29.99">
+            <img src="../imgs/Meta Quest 2 — Advanced All-In-One Virtual Reality Headset — 128 GB.jpeg" alt="Product 5">
+            <h2>Meta Quest Advanced All In One Virtual Reality </h2>
+          
+             <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-price="29.99">
+            <img src="../imgs/HP Laptop.jpeg" alt="Product 5">
+            <h2>HP Laptop</h2>
+          
+             <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-price="29.99">
+            <img src="../imgs/Learn How To Use Your DSLR Camera With This Easy Photography Tutorial!.jpeg" alt="Product 5">
+            <h2>DSLR Camera</h2>
+          
+             <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-price="29.99">
+            <img src="../imgs/Gift This, Not That_ New Apple TV Vs_ Amazon Fire TV.jpeg" alt="Product 5">
+            <h2>New Apple TV Vs</h2>
+          
+             <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-price="29.99">
+            <img src="../imgs/Fujifilm Instax Mini Link Smartphone Printer, Dusky Pink.jpeg " alt="Product 5">
+            <h2>Smartphone Printer</h2>
+          
+             <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-price="29.99">
+            <img src="../imgs/Electronics _ Audio, Photography, Phone & Tech Accessories.jpeg" alt="Product 5">
+            <h2>Audio Photography</h2>
+          
+             <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-price="29.99">
+            <img src="../imgs/31 Incredibly Awesome Christmas Gifts For Dads (2020 Guide) - Board and Life.jpeg" alt="Product 5">
+            <h2>data show</h2>
+          
+             <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product"  data-price="100" >
+            <img src="../imgs/6 Things Nina Dobrev Always Packs for a Summer Vacation.jpeg" alt="Product 5">
+            <h2>air pods</h2>
+          
+             <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-price="">
+            <img src="../imgs/_Unlock Ultimate Sound_ Top 3 Apple Earbuds You Need Now!_.jpeg" alt="Product 5">
+            <h2>apple airpods</h2>
+          
+             <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-price="200">
+            <img src="../imgs/Acoustic Energy 300 Series Speakers.jpeg" alt="Product 5">
+            <h2> Speakers</h2>
+          
+             <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-price="150">
+            <img src="../imgs/Beats Solo 4 True Wireless On Ear Headphones in Cloud Pink _ Nebraska Furniture Mart.jpeg" alt="Product 5">
+            <h2> Headphones in Cloud Pink</h2>
+          
+             <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-price="100">
+            <img src="../imgs/Apple Watch.jpeg" alt="Product 5">
+            <h2>Apple Watch</h2>
+          
+             <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-price="100">
+            <img src="../imgs/Alexa Eco Echo Dot Amazon Smart Speaker Alexa 3 Geração Original.jpeg" alt="Product 5">
+            <h2>Alexa Eco Echo</h2>
+          
+             <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <!-- More products... -->
+
+    </section>
+    <button id="back-to-top" style="display: none; position: fixed; bottom: 20px; right: 20px; background-color: #f2a900; border: none; padding: 10px; border-radius: 50%; cursor: pointer;">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+    <footer>
+        <p>&copy; 2025 Makeup Products Showcase</p>
+    </footer>
+
+    <script>
+      // Function to open and close the cart modal
+const cartIcon = document.querySelector('.cart-icon');
+const cartModal = document.querySelector('.cart-modal');
+const closeCart = document.querySelector('.close-cart');
+
+cartIcon.addEventListener('click', () => {
+    cartModal.style.display = 'flex';
+});
+
+closeCart.addEventListener('click', () => {
+    cartModal.style.display = 'none';
+});
+
+// Cart functionality
+let cart = [];
+let totalPrice = 0;
+
+const addToCartButtons = document.querySelectorAll('.add-to-cart');
+const cartItemsList = document.getElementById('cart-items');
+const totalPriceElement = document.getElementById('total-price');
+const buyNowButton = document.getElementById('buy-now');
+
+addToCartButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        const productElement = e.target.closest('.product');
+        const productName = productElement.querySelector('h2').textContent;
+        const productPrice = parseFloat(productElement.getAttribute('data-price'));
+
+        // Add item to cart
+        cart.push({ name: productName, price: productPrice });
+        updateCart();
+    });
+});
+
+function updateCart() {
+    // Clear the cart list
+    cartItemsList.innerHTML = '';
+
+    // Reset total price
+    totalPrice = 0;
+
+    // Add items to the cart list and calculate total price
+    cart.forEach((item, index) => {
+        const cartItem = document.createElement('li');
+        cartItem.innerHTML = `
+            ${item.name} - $${item.price.toFixed(2)}
+            <button class="remove-item" data-index="${index}">Remove</button>
+        `;
+        cartItemsList.appendChild(cartItem);
+
+        totalPrice += item.price;
+    });
+
+    // Update total price
+    totalPriceElement.textContent = totalPrice.toFixed(2);
+
+    // Add event listeners to remove buttons
+    const removeButtons = document.querySelectorAll('.remove-item');
+    removeButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const index = e.target.getAttribute('data-index');
+            cart.splice(index, 1);
+            updateCart();
+        });
+    });
+}
+
+// Buy Now functionality
+buyNowButton.addEventListener('click', () => {
+    if (cart.length > 0) {
+        alert('Thank you for your purchase!');
+        cart = [];
+        updateCart();
+    } else {
+        alert('Your cart is empty!');
+    }
+});
+
+
+const backToTopButton = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+
+
+    function filterProducts() {
+        const searchTerm = document.getElementById('search-input').value.toLowerCase();
+        const products = document.querySelectorAll('.product');
+
+        products.forEach(product => {
+            const productName = product.querySelector('h3').textContent.toLowerCase();
+            if (productName.includes(searchTerm)) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    }
+</script>

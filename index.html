@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AHIM Style Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <meta name="author" content="douae">
+    <meta name="Description" content="douaas shop">
+    <meta name="keywords" content="html,meta,link,seo,responsive">
+    <meta name="description" content="AHIM Style Marketplace - Shop the best products at unbeatable prices. Explore accessories, makeup, electronics, and home appliances.">
+    <meta name="keywords" content="AHIM, marketplace, accessories, makeup, electronics, home appliances, shopping">
+    <meta name="author" content="Douaa AHIM">
+    <link rel="icon" href="https://img.icons8.com/?size=100&id=53372&format=png&color=000000">
+    <style>
+     body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        /* Add to your CSS */
+html {
+    scroll-behavior: smooth;
+}
+
+.product {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+        header {
+            background-color: #232323;
+            padding: 20px;
+            color: white;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #f2a900;
+            cursor: pointer;
+        }
+
+        header .search-bar {
+            display: flex;
+            align-items: center;
+            width: 50%;
+            background-color: #fff;
+            padding: 5px 15px;
+            border-radius: 25px;
+        }
+
+        header .search-bar input {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        header .search-bar button {
+            background-color: #f2a900;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        nav {
+            background-color: #232323;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 10px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #f2a900;
+        }
+
+        .banner {
+            width: 100%;
+            height: 650px;
+            background: url('./imgs/Delivery\ Map\ Pictures\ _\ Freepik.jpeg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .product {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .product img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+        }
+
+        .login-form-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #f2a900;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-form button:hover {
+            background-color: #e19500;
+        }
+
+        .close-btn {
+            background-color: #e19500;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background-color: #d48400;
+        }
+
+        .login-icon {
+            font-size: 2rem;
+            color: #f2a900;
+            cursor: pointer;
+        }
+
+        .delivery {
+            background-color: #f8f8f8;
+            padding: 50px 0;
+        }
+
+        .icons-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            text-align: center;
+        }
+
+        .icon-box {
+            flex: 1 1 18%;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media screen and (max-width: 768px) {
+            header .search-bar {
+                width: 70%;
+            }
+
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .banner {
+                height: 450px;
+                font-size: 1.5rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            .icon-box {
+                flex: 1 1 40%;
+            }
+
+            .login-form {
+                width: 80%;
+                padding: 20px;
+            }
+
+            footer .social-icons {
+                font-size: 2rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            header {
+                font-size: 1.5rem;
+                padding: 15px;
+            }
+
+            header .search-bar {
+                width: 60%;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .banner {
+                height: 300px;
+                font-size: 1.2rem;
+            }
+
+            .icon-box {
+                flex: 1 1 100%;
+                padding: 20px;
+            }
+
+            footer .social-icons {
+                font-size: 1.8rem;
+            }
+        }
+        .dark-mode {
+        background-color: #121212;
+        color: #ffffff;
+    }
+
+    .dark-mode header, .dark-mode nav, .dark-mode footer {
+        background-color: #1f1f1f;
+    }
+
+    .dark-mode .product {
+        background-color: #2d2d2d;
+        color: #ffffff;
+    }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">AHIM</div>
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search for products, brands and more...">
+        <button onclick="filterProducts()"><i class="fa fa-search"></i></button>
+    </div>
+    <i class="fa fa-user login-icon" onclick="showLoginForm()"></i>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="html/acco.html">accessories</a></li>
+        <li><a href="html/make.html">Makeup</a></li>
+        <li><a href="html/electro.html">electronics</a></li>
+        <li><a href="index.html">Home Appliances</a></li>
+    </ul>
+</nav>
+
+<div class="banner">
+    <div>Shop the Best Products at Unbeatable Prices</div>
+  
+</div>
+
+<section class="products-grid" id="products">
+    <!-- Dynamic Product Content Will Be Loaded Here -->
+</section>
+
+<div class="login-form-container" id="login-form-container">
+    <div class="login-form">
+        <button class="close-btn" onclick="closeLoginForm()">×</button>
+        <h2>Login</h2>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="tel" id="telephone" placeholder="Telephone" required>
+            <button type="submit">Login</button>
+        </form>
+        <p style="margin-top: 10px;">Or login with:</p>
+        <div style="display: flex; justify-content: center; gap: 10px;">
+            <button style="background-color: #db4437; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; color: white;">Google</button>
+            <button style="background-color: #1877f2; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; color: white;">Facebook</button>
+        </div>
+    </div>
+</div>
+<div class="delivery" style="background-color: #f8f8f8; padding: 50px 0;">
+    <div class="icons-container" style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; text-align: center;">
+        <!-- Fast Delivery Icon -->
+        <div class="icon-box" style="flex: 1 1 18%; background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); transition: transform 0.3s, box-shadow 0.3s; text-align: center;">
+            <i class="fa fa-truck" style="font-size: 4rem; color: #f2a900; transition: color 0.3s;"></i>
+            <h3 style="font-size: 1.7rem; margin-top: 20px; color: #333; font-weight: bold;">Fast Delivery</h3>
+            <p style="color: #666; font-size: 1rem;">Get your products quickly and reliably.</p>
+        </div>
+
+        <!-- Secure Payments Icon -->
+        <div class="icon-box" style="flex: 1 1 18%; background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); transition: transform 0.3s, box-shadow 0.3s; text-align: center;">
+            <i class="fa fa-shield-alt" style="font-size: 4rem; color: #f2a900; transition: color 0.3s;"></i>
+            <h3 style="font-size: 1.7rem; margin-top: 20px; color: #333; font-weight: bold;">Secure Payments</h3>
+            <p style="color: #666; font-size: 1rem;">100% safe transactions.</p>
+        </div>
+
+        <!-- 24/7 Support Icon -->
+        <div class="icon-box" style="flex: 1 1 18%; background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); transition: transform 0.3s, box-shadow 0.3s; text-align: center;">
+            <i class="fa fa-clock" style="font-size: 4rem; color: #f2a900; transition: color 0.3s;"></i>
+            <h3 style="font-size: 1.7rem; margin-top: 20px; color: #333; font-weight: bold;">24/7 Support</h3>
+            <p style="color: #666; font-size: 1rem;">We are here anytime you need us.</p>
+        </div>
+
+        <!-- Quality Products Icon -->
+        <div class="icon-box" style="flex: 1 1 18%; background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); transition: transform 0.3s, box-shadow 0.3s; text-align: center;">
+            <i class="fa fa-thumbs-up" style="font-size: 4rem; color: #f2a900; transition: color 0.3s;"></i>
+            <h3 style="font-size: 1.7rem; margin-top: 20px; color: #333; font-weight: bold;">Quality Products</h3>
+            <p style="color: #666; font-size: 1rem;">Only the best, verified items.</p>
+        </div>
+
+        <!-- Worldwide Shipping Icon -->
+        <div class="icon-box" style="flex: 1 1 18%; background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); transition: transform 0.3s, box-shadow 0.3s; text-align: center;">
+            <i class="fa fa-globe" style="font-size: 4rem; color: #f2a900; transition: color 0.3s;"></i>
+            <h3 style="font-size: 1.7rem; margin-top: 20px; color: #333; font-weight: bold;">Worldwide Shipping</h3>
+            <p style="color: #666; font-size: 1rem;">We deliver globally at great rates.</p>
+        </div>
+    </div>
+</div>
+
+
+
+<button id="back-to-top" style="display: none; position: fixed; bottom: 20px; right: 20px; background-color: #f2a900; border: none; padding: 10px; border-radius: 50%; cursor: pointer;">
+    <i class="fa fa-arrow-up"></i>
+</button>
+
+
+<footer style="background-color: #232323; color: white; padding: 20px 0;">
+    <div class="social-icons" style="text-align: center; margin-bottom: 20px;">
+        <a href="https://www.facebook.com/share/12A9yAWYXCA/" style="color: #f2a900; font-size: 2.5rem; margin: 0 20px; transition: color 0.3s;" target="_blank">
+            <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://www.instagram.com/douaeahim?igsh=MTU1NjZ3dnIwazIwcg==" style="color: #f2a900; font-size: 2.5rem; margin: 0 20px; transition: color 0.3s;" target="_blank">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://x.com/DUaaahim?t=r_aWIOgtVGZJxEKI_x_YMw&s=09" style="color: #f2a900; font-size: 2.5rem; margin: 0 20px; transition: color 0.3s;" target="_blank">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/douaa-ahim-00959b332/" style="color: #f2a900; font-size: 2.5rem; margin: 0 20px; transition: color 0.3s;" target="_blank">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        
+    </div>
+
+
+
+    <div style="text-align: center;">
+        <p>&copy; 2025 AHIM . All Rights Reserved.</p>
+    </div>
+    
+</footer>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+<script>
+    function showLoginForm() {
+        document.getElementById("login-form-container").style.display = "flex";
+    }
+
+    function closeLoginForm() {
+        document.getElementById("login-form-container").style.display = "none";
+    }
+
+ 
+
+
+    const backToTopButton = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+
+
+
+    function filterProducts() {
+        const searchTerm = document.getElementById('search-input').value.toLowerCase();
+        const products = document.querySelectorAll('.product');
+
+        products.forEach(product => {
+            const productName = product.querySelector('h3').textContent.toLowerCase();
+            if (productName.includes(searchTerm)) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    }
+
+    
+</script>
+
+</body>
+</html>
