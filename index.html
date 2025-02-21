@@ -321,6 +321,49 @@ html {
         background-color: #2d2d2d;
         color: #ffffff;
     }
+
+    .brand-slider {
+    width: 100%;
+    overflow: hidden;
+    background-color: #fff;
+    padding: 20px 0;
+    position: relative;
+}
+
+.brand-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.brand-track {
+    display: flex;
+    align-items: center;
+    width: max-content; /* Allow the track to expand based on content */
+    animation: slide 20s linear infinite; /* Adjust speed here */
+}
+
+.brand-track img {
+    width: 150px; /* Fixed width */
+    height: 100px; /* Fixed height */
+    margin: 0 20px; /* Space between images */
+    object-fit: contain; /* Ensure images maintain aspect ratio */
+    transition: transform 0.3s ease;
+}
+
+.brand-track img:hover {
+    transform: scale(1.1); /* Add hover effect */
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* Move by half the width of the track */
+    }
+}
+
     </style>
 </head>
 <body>
@@ -416,6 +459,22 @@ html {
 </button>
 
 
+
+<section class="brand-slider">
+    <div class="brand-container">
+        <div class="brand-track">
+            <img src="../courige/imgs/My Favorite Brands.jpeg" alt="Brand 1">
+            <img src="../courige/imgs/Cricut Design Space.jpeg" alt="Brand 2">
+            <img src="../courige/imgs/Huda Beauty logo.jpeg" alt="Brand 3">
+            <img src="../courige/imgs/Nars Logo Reverse_.jpeg" alt="Brand 4">
+            <img src="../courige/imgs/Beauty Subscriptions and More _ Birchbox.jpeg" alt="Brand 5">
+            <img src="../courige/imgs/Download premium vector of Black makeup brushes icon cosmetic vector by filmful about logo, icon, illustration, woman, and black 517526.jpeg" alt="Brand 1"> <!-- Repeat for smooth loop -->
+            <img src="../courige/imgs/Best Cruelty Free Makeup Brands that Don't Cost a Fortune • OhMeOhMy Blog (1).jpeg" alt="Brand 2">
+        </div>
+    </div>
+</section>
+
+
 <footer style="background-color: #232323; color: white; padding: 20px 0;">
     <div class="social-icons" style="text-align: center; margin-bottom: 20px;">
         <a href="https://www.facebook.com/share/12A9yAWYXCA/" style="color: #f2a900; font-size: 2.5rem; margin: 0 20px; transition: color 0.3s;" target="_blank">
@@ -435,6 +494,8 @@ html {
 
 
 
+
+
     <div style="text-align: center;">
         <p>&copy; 2025 AHIM . All Rights Reserved.</p>
     </div>
@@ -446,48 +507,115 @@ html {
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
 <script>
-    function showLoginForm() {
-        document.getElementById("login-form-container").style.display = "flex";
+    // Show Login Form
+function showLoginForm() {
+    document.getElementById("login-form-container").style.display = "flex";
+}
+
+// Close Login Form
+function closeLoginForm() {
+    document.getElementById("login-form-container").style.display = "none";
+}
+
+// Back to Top Button
+const backToTopButton = document.getElementById('back-to-top');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        backToTopButton.style.display = 'block';
+    } else {
+        backToTopButton.style.display = 'none';
     }
+});
 
-    function closeLoginForm() {
-        document.getElementById("login-form-container").style.display = "none";
-    }
+backToTopButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
- 
+// Product Filtering
+function filterProducts() {
+    const searchTerm = document.getElementById('search-input').value.toLowerCase();
+    const products = document.querySelectorAll('.product');
 
-
-    const backToTopButton = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            backToTopButton.style.display = 'block';
+    products.forEach(product => {
+        const productName = product.querySelector('h3').textContent.toLowerCase();
+        if (productName.includes(searchTerm)) {
+            product.style.display = 'block';
         } else {
-            backToTopButton.style.display = 'none';
+            product.style.display = 'none';
         }
     });
+}
 
-    backToTopButton.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+// Brand Slider
+document.addEventListener("DOMContentLoaded", function () {
+    const brandTrack = document.querySelector(".brand-track");
+
+    // Clone brand images for infinite effect
+    const brands = Array.from(brandTrack.children);
+    brands.forEach((brand) => {
+        const clone = brand.cloneNode(true);
+        brandTrack.appendChild(clone);
     });
 
+    // Pause animation on hover
+    brandTrack.addEventListener("mouseover", () => {
+        brandTrack.style.animationPlayState = "paused";
+    });
 
+    brandTrack.addEventListener("mouseleave", () => {
+        brandTrack.style.animationPlayState = "running";
+    });
 
+    // Optional: Dynamically adjust animation duration based on the number of brands
+    const totalBrands = brands.length;
+    const animationDuration = totalBrands * 4; // Adjust multiplier for speed
+    brandTrack.style.animationDuration = `${animationDuration}s`;
+});
 
-    function filterProducts() {
-        const searchTerm = document.getElementById('search-input').value.toLowerCase();
-        const products = document.querySelectorAll('.product');
+// Dark Mode Toggle (Optional)
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+}
 
-        products.forEach(product => {
-            const productName = product.querySelector('h3').textContent.toLowerCase();
-            if (productName.includes(searchTerm)) {
-                product.style.display = 'block';
-            } else {
-                product.style.display = 'none';
-            }
-        });
+// Login Form Validation (Optional)
+document.getElementById('login-form').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent form submission
+
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const telephone = document.getElementById('telephone').value;
+
+    if (!username || !email || !password || !telephone) {
+        alert('Please fill in all fields.');
+        return;
     }
 
-    
+    if (!validateEmail(email)) {
+        alert('Please enter a valid email address.');
+        return;
+    }
+
+    if (!validatePhoneNumber(telephone)) {
+        alert('Please enter a valid phone number.');
+        return;
+    }
+
+    alert('Login successful!');
+    closeLoginForm();
+});
+
+// Helper function to validate email
+function validateEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+}
+
+// Helper function to validate phone number
+function validatePhoneNumber(phone) {
+    const regex = /^\d{10}$/; // Assumes a 10-digit phone number
+    return regex.test(phone);
+}
 </script>
 
 </body>
